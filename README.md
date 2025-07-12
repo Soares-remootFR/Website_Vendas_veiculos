@@ -26,4 +26,4 @@ Você pode clonar este repositório e abrir o arquivo `index.html` em qualquer n
 
 ## Autor
 
-**[Fábio Ricardo Soares]**
+**Fábio Ricardo Soares**
