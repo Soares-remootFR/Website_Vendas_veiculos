@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | Autofácil</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* CSS para o efeito de label flutuante */
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            position: absolute;
+            top: 15px;
+            /* Ajuste conforme o padding do input */
+            left: 15px;
+            /* Ajuste conforme o padding do input */
+            color: #aaa;
+            font-size: 16px;
+            transition: all 0.2s ease-out;
+            pointer-events: none;
+            /* Garante que o clique no label passe para o input */
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: calc(100% - 30px);
+            /* Largura total menos padding */
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+            background-color: #fff;
+            /* Garante que o background não esconda o label */
+        }
+
+        /* Quando o input/textarea está focado OU tem conteúdo */
+        .form-group input:focus+label,
+        .form-group input:not(:placeholder-shown)+label,
+        .form-group textarea:focus+label,
+        .form-group textarea:not(:placeholder-shown)+label {
+            top: -10px;
+            /* Sobe o label */
+            left: 10px;
+            /* Ajusta a posição horizontal */
+            font-size: 12px;
+            /* Diminui a fonte */
+            color: #333;
+            /* Cor do label quando flutuante */
+            background-color: #fff;
+            padding: 0 5px;
+            /* Adiciona um pequeno padding para "separar" da borda */
+            transform: translateX(-5px);
+            /* Ajuste fino */
+        }
+
+        /* Estilos adicionais para o formulário e status */
+        #contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #contact-form button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            /* Exemplo de cor azul */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #contact-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container nav-container">
+            <h1 class="logo">Autofácil</h1>
+            <nav>
+                <ul class="nav">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="estacionamento.html">Estacionamento</a></li>
+                    <li><a href="veiculos.html">Veículos</a></li>
+                    <li><a href="contato.html" class="active">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero contato-hero">
+        <div class="container hero-content">
+            <h2>Entre em Contato</h2>
+            <p>Estamos à disposição para esclarecer dúvidas e receber sugestões.</p>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <h3 class="section-title">Fale Conosco</h3>
+            <form action="https://formsubmit.co/fjignacio@gmail.com" method="POST" class="contact-form"
+                id="contact-form">
+                <input type="hidden" name="_next" value="https://sp.senai.br/unidade/santabarbara/">
+
+                <div class="form-group">
+                    <input type="text" id="name" name="name" required placeholder=" ">
+                    <label for="name">Nome</label>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" id="email" name="email" required placeholder=" ">
+                    <label for="email">E-mail</label>
+                </div>
+
+                <div class="form-group">
+                    <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
+                    <label for="message">Mensagem</label>
+                </div>
+
+                <button type="submit">Enviar Mensagem</button>
+                <p id="form-status" class="form-status"></p>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Autofácil. Atendimento com respeito e agilidade.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactForm = document.getElementById('contact-form');
+            const statusElement = document.getElementById('form-status');
+
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault(); // Impede o envio automático do formulário
+
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                // Validação simples
+                if (!name || !email || !message) {
+                    statusElement.textContent = "Por favor, preencha todos os campos obrigatórios.";
+                    statusElement.style.color = "red";
+                    return;
+                }
+
+                // Simulação de envio (poderia ser um fetch para backend ou FormSubmit)
+                // Usando setTimeout para simular um atraso no envio e mostrar o status
+                statusElement.textContent = "Enviando...";
+                statusElement.style.color = "orange"; // Cor para "enviando"
+
+                // Aqui você integraria com FormSubmit ou seu backend real
+                // Exemplo com fetch API (se fosse enviar para um backend)
+                /*
+                fetch('https://formsubmit.co/fjignacio@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        message: message,
+                        _next: 'https://sp.senai.br/unidade/santabarbara/'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    statusElement.textContent = "Mensagem enviada com sucesso! Entraremos em contato em breve.";
+                    statusElement.style.color = "green";
+                    contactForm.reset(); // Limpa os campos após o sucesso
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    statusElement.textContent = "Ocorreu um erro ao enviar a mensagem. Tente novamente.";
+                    statusElement.style.color = "red";
+                });
+                */
+
+                // Mantendo a lógica de simulação com setTimeout para o exemplo atual
+                setTimeout(() => {
+                    statusElement.textContent = "Mensagem enviada com sucesso! Entraremos em contato em breve.";
+                    statusElement.style.color = "green";
+                    contactForm.reset(); // Limpa os campos
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+
+</html>
