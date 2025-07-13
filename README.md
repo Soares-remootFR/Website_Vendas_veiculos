@@ -1,6 +1,5 @@
 # Website_Vendas_veiculos
 
-https://soares-remootfr.github.io/Website_Vendas_veiculos/
 
 # Autofácil - Estacionamento & Veículos
 
