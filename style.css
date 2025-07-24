@@ -107,6 +107,10 @@ body {
     flex: 1;
 }
 
+p { 
+  text-align: justify; /* Alinha o texto nas laterais */
+}
+    
 .section-title {
     text-align: center;
     font-size: 2rem;
